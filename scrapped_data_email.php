@@ -30,8 +30,8 @@
 				
 				// extracting consumer number2.
 				$consumer_mobileinfo_arr=explode("Cell:",$consumer_info);	
-		        $phone_number2=trim(substr($consumer_mobileinfo_arr[2], 0, strpos($consumer_mobileinfo_arr[1], 'Email')));
-			    $consumer_info=str_replace($phone_number, "<a href=\"tel:{$phone_number2}\">{$phone_number2}</a>", $consumer_info); // for first phone number
+		        $phone_number2=trim(substr($consumer_mobileinfo_arr[1], 0, strpos($consumer_mobileinfo_arr[1], 'Email')));
+			    $consumer_info=str_replace($phone_number2, "<a href=\"tel:{$phone_number2}\">{$phone_number2}</a>", $consumer_info); // for first phone number
 				
 				
 				$message_body="Hello Admin<br/><br/>Following is the new FMAP lead.<br/><br/>";	
@@ -41,9 +41,9 @@
 				$message_body.="</tr></table>";
 				$message_body.="<p>Thanks and regards</p>";
 				
-				$transporter = Swift_SmtpTransport::newInstance('68.178.195.121', 25)
-				->setUsername('leads@enzymelabssetup.com')
-				->setPassword('Howard321');
+				$transporter = Swift_SmtpTransport::newInstance('iphere', portnumber)
+				->setUsername('yourusername')
+				->setPassword('passwordhere');
 				$mailer = Swift_Mailer::newInstance($transporter);
 				$message = Swift_Message::newInstance('YOU HAVE A NEW QUOTE REQUEST')
 				
@@ -57,10 +57,11 @@
 				'monica.va@protectivechoice.com'=> 'Monica',
 				'Chad@protectivechoice.com'=> 'Chad Bartlett',
 				'amanda@protectivechoice.com'=> 'Amanda',
+				
 				'jason@protectivechoice.com'=>'Jason',
 				'brad@protectivechoice.com'=>'Brad',
 				'roda.va@protectivechoice.com'=>'Roda',
-				'leads@protectivechoice.com'=>'Leads',))
+				'leads@protectivechoice.com'=>'Leads'))
 				->setBcc(array('checkrecords@enzymelabssetup.com'=> 'FMAP LEAD'))
 				->setBody($message_body,'text/html');
 				echo $message_body;
